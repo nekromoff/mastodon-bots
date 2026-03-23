@@ -14,7 +14,7 @@ Download the code or clone using git.
 
 **SQLite** used as a database for low friction setup (database = single file).
 
-See **Setup your fist bot** below...
+See **Setup your first bot** below...
 
 <img width="1182" height="460" alt="image" src="https://github.com/user-attachments/assets/e34a2773-a8e6-4298-90b3-589ce8bcc9a2" />
 

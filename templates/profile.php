@@ -18,14 +18,18 @@ require BASE_PATH . '/templates/layout.php';
 ?>
 
 <?php if ($header): ?>
-<div class="profile-header-image" style="background-image:url('<?= h($header) ?>')"></div>
+<a href="<?= h($header) ?>" target="_blank" rel="noopener" class="profile-header-link">
+  <div class="profile-header-image" style="background-image:url('<?= h($header) ?>')"></div>
+</a>
 <?php endif; ?>
 
 <div class="card <?= $header ? 'profile-card--with-header' : 'profile-card--no-header' ?>">
   <div class="profile-info">
     <?php if ($avatar): ?>
-    <img src="<?= h($avatar) ?>" alt="<?= h($account['display_name'] ?: $account['username']) ?>"
-         class="profile-avatar">
+    <a href="<?= h($avatar) ?>" target="_blank" rel="noopener">
+      <img src="<?= h($avatar) ?>" alt="<?= h($account['display_name'] ?: $account['username']) ?>"
+           class="profile-avatar">
+    </a>
     <?php else: ?>
     <div class="profile-avatar-placeholder">
       <?= strtoupper(substr($account['username'], 0, 1)) ?>

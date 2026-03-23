@@ -68,7 +68,7 @@ curl -u botname:botpassword \
 2. Set domain/subdomain to be used for your ActivityPub / Mastodon instance.
 3. Create your admin password
 4. Login using your password.
-5. **Create New Bot**, set username (no @ character), display name, short bio, password for the bot (keep it for later API access)
+5. **Create New Bot**, set username (no @ character), display name, short bio, password for the bot (keep it for later = API access)
 6. **Edit** your bot to enter additonal details (extra fields, featured hashtags) and upload your profile icon (avatar) and a header image. Set options such as discoverability, featuring in Mastodon explore, search engine indexing, followers approval. All options preset for full visibility.
 7. **Settings** and change log retention and media upload limits as needed.
 8. See **API Usage** under settings for simple API communication with your bots.

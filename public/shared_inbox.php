@@ -207,7 +207,7 @@ function shared_handle_create(array $account, array $actor, array $activity, str
     $refId = $inReplyTo ?: $quoteUrl;
     if (empty($refId)) return;
 
-    $post = db_get("SELECT id FROM posts WHERE activity_id = ? AND account_id = ?", [$refId, $account['id']]);
+    $post = db_get("SELECT id, activity_id FROM posts WHERE activity_id = ? AND account_id = ?", [$refId, $account['id']]);
     if (!$post) return;
 
     if (!empty($quoteUrl) && $quoteUrl === $refId) {
@@ -215,6 +215,28 @@ function shared_handle_create(array $account, array $actor, array $activity, str
             "INSERT OR IGNORE INTO quotes (post_id, actor_uri, activity_id) VALUES (?, ?, ?)",
             [$post['id'], $actorUri, $activity['id'] ?? '']
         );
+
+        // Auto-generate QuoteAuthorization stamp and notify the quoting server (FEP-044f)
+        $quotePostUri = $obj['id'] ?? '';
+        if ($quotePostUri) {
+            $stampUuid = generate_uuid();
+            $stmt = db_run(
+                "INSERT OR IGNORE INTO quote_authorizations (post_id, stamp_uuid, quoting_post_uri) VALUES (?, ?, ?)",
+                [$post['id'], $stampUuid, $quotePostUri]
+            );
+            // Fetch existing UUID if this quote was already stamped
+            if ($stmt->rowCount() === 0) {
+                $existing  = db_get(
+                    "SELECT stamp_uuid FROM quote_authorizations WHERE post_id = ? AND quoting_post_uri = ?",
+                    [$post['id'], $quotePostUri]
+                );
+                $stampUuid = $existing['stamp_uuid'] ?? $stampUuid;
+            }
+            $stampUrl = $post['activity_id'] . '/quotes/' . $stampUuid;
+            // Send Accept{Create} with stamp URL so quoting server can set quoteAuthorization
+            $accept = build_accept_quote_request($account, $activity, $stampUrl);
+            deliver_to_actor($accept, $account, $actorUri);
+        }
     }
 
     log_activity((int)$account['id'], 'in', 'Create', $body, $actorUri, '', 'received');
@@ -266,7 +288,24 @@ function shared_handle_quote_request(array $account, array $actor, array $activi
     $post = db_get("SELECT id, activity_id FROM posts WHERE activity_id = ? AND account_id = ? AND deleted_at IS NULL", [$quotedPostUri, $account['id']]);
     if (!$post) return;
 
-    $stampUrl = $post['activity_id'] . '/quotes/' . generate_uuid();
-    $accept   = build_accept_quote_request($account, $activity, $stampUrl);
+    // Fosstodon puts it in activity['instrument']['id']; some servers put it in activity['object']['id']
+    $quotingPostUri = $activity['instrument']['id']
+        ?? (is_array($activity['object']) ? ($activity['object']['id'] ?? '') : '');
+
+    $stampUuid = generate_uuid();
+    $stmt = db_run(
+        "INSERT OR IGNORE INTO quote_authorizations (post_id, stamp_uuid, quoting_post_uri) VALUES (?, ?, ?)",
+        [$post['id'], $stampUuid, $quotingPostUri]
+    );
+    if ($stmt->rowCount() === 0) {
+        $existing  = db_get(
+            "SELECT stamp_uuid FROM quote_authorizations WHERE post_id = ? AND quoting_post_uri = ?",
+            [$post['id'], $quotingPostUri]
+        );
+        $stampUuid = $existing['stamp_uuid'] ?? $stampUuid;
+    }
+    $stampUrl = $post['activity_id'] . '/quotes/' . $stampUuid;
+
+    $accept = build_accept_quote_request($account, $activity, $stampUrl);
     deliver_to_actor($accept, $account, $actorUri);
 }

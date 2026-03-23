@@ -44,6 +44,9 @@ DirectoryIndex index.php
     # /users/{username}/featured_tags
     RewriteRule ^users/([a-zA-Z0-9_-]+)/featured_tags$ index.php?_route=featured_tags&username=$1 [L,QSA]
 
+    # /users/{username}/statuses/{id}/quotes/{uuid} — QuoteAuthorization stamp (FEP-044f)
+    RewriteRule ^users/([a-zA-Z0-9_-]+)/statuses/([a-zA-Z0-9_-]+)/quotes/([a-zA-Z0-9_-]+)$ index.php?_route=quote_authorization&username=$1&status_id=$2&quote_uuid=$3 [L,QSA]
+
     # /users/{username}/statuses/{id}
     RewriteRule ^users/([a-zA-Z0-9_-]+)/statuses/([a-zA-Z0-9_-]+)$ index.php?_route=status&username=$1&status_id=$2 [L,QSA]
 

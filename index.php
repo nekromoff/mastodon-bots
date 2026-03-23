@@ -20,6 +20,7 @@ $routes = [
     'nodeinfo'           => 'public/nodeinfo.php',
     'actor'              => 'public/actor.php',
     'status'             => 'public/status.php',
+    'quote_authorization' => 'public/quote_authorization.php',
     'profile'            => 'public/actor.php',
     'inbox'              => 'public/inbox.php',
     'shared_inbox'       => 'public/shared_inbox.php',

@@ -78,6 +78,8 @@ Very **simple API** to communicate with your bots.
 ### How quickly can I create a bot?
 > Once you are done with a first time setup, you can create a bot in about 20 seconds. You will need some more time to edit bio, upload profile image etc.
 
+![output](https://github.com/user-attachments/assets/ec158567-35bd-43f7-aa04-6335bfa1ebf6)
+
 ### Can I run multiple bots on the same instance?
 > Yes, I built it to do just right that!
 

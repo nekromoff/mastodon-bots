@@ -4,6 +4,10 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title><?= isset($pageTitle) ? h($pageTitle) . ' — ' : '' ?>Admin</title>
+<link rel="apple-touch-icon" sizes="180x180" href="<?= h(site_url('public/favicon/apple-touch-icon.png')) ?>">
+<link rel="icon" type="image/png" sizes="32x32" href="<?= h(site_url('public/favicon/favicon-32x32.png')) ?>">
+<link rel="icon" type="image/png" sizes="16x16" href="<?= h(site_url('public/favicon/favicon-16x16.png')) ?>">
+<link rel="manifest" href="<?= h(site_url('public/favicon/site.webmanifest')) ?>">
 <link rel="stylesheet" href="<?= h(site_url('public/css/admin.css')) ?>">
 <script src="<?= h(site_url('public/js/admin.js')) ?>" defer></script>
 </head>

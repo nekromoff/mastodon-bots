@@ -59,7 +59,7 @@ require BASE_PATH . '/templates/admin/layout.php';
 <div class="card table-no-padding">
   <div class="table-scroll">
   <table>
-    <thead>
+    <thead class="logs-thead">
       <tr>
         <th>ID</th>
         <th>Bot</th>
@@ -103,19 +103,19 @@ require BASE_PATH . '/templates/admin/layout.php';
           default     => '',
       };
     ?>
-    <tr>
-      <td class="log-id-cell"><?= (int)$log['id'] ?></td>
-      <td class="log-bot-cell"><?= $log['username'] ? '@' . h($log['username']) : '—' ?></td>
-      <td>
+    <tr class="log-row">
+      <td class="log-id-cell" data-label="ID"><?= (int)$log['id'] ?></td>
+      <td class="log-bot-cell" data-label="Bot"><?= $log['username'] ? '@' . h($log['username']) : '—' ?></td>
+      <td data-label="Dir">
         <?php if ($log['direction'] === 'in'): ?>
         <span class="badge badge-secondary">↙ in</span>
         <?php else: ?>
         <span class="badge badge-secondary">↗ out</span>
         <?php endif; ?>
       </td>
-      <td class="log-type-cell"><?= h($type) ?></td>
-      <td class="log-summary-cell"><?= h($summary) ?: '—' ?></td>
-      <td>
+      <td class="log-type-cell" data-label="Type"><?= h($type) ?></td>
+      <td class="log-summary-cell" data-label="Summary"><?= h($summary) ?: '—' ?></td>
+      <td data-label="Status">
         <?php if ($log['status'] === 'delivered' || $log['status'] === 'received'): ?>
         <span class="badge badge-success"><?= h($log['status']) ?></span>
         <?php elseif ($log['status'] === 'failed'): ?>
@@ -124,9 +124,9 @@ require BASE_PATH . '/templates/admin/layout.php';
         <span class="badge badge-warning"><?= h($log['status']) ?></span>
         <?php endif; ?>
       </td>
-      <td class="log-target-cell"><?= h($log['target_inbox'] ?: $log['remote_actor'] ?: '—') ?></td>
-      <td class="log-time-cell"><?= h(date('M j H:i', strtotime($log['created_at']))) ?></td>
-      <td>
+      <td class="log-target-cell" data-label="Target"><?= h($log['target_inbox'] ?: $log['remote_actor'] ?: '—') ?></td>
+      <td class="log-time-cell" data-label="Time"><?= h(date('M j H:i', strtotime($log['created_at']))) ?></td>
+      <td data-label="Details">
         <?php if (!empty($log['error'])): ?>
         <button type="button" class="btn btn-secondary btn-sm btn-error"
                 onclick="this.nextElementSibling.style.display=this.nextElementSibling.style.display?'':'block';this.remove()">⚠ error</button>

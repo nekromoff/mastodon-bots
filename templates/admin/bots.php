@@ -14,7 +14,7 @@ require BASE_PATH . '/templates/admin/layout.php';
 
 <?php if ($editBot): ?>
 <div class="section-nav">
-  <a href="<?= h(admin_url('bots')) ?>" class="btn btn-secondary btn-sm">← Bots</a>
+  <a href="<?= h(admin_url()) ?>" class="btn btn-secondary btn-sm">← Bots</a>
   <span class="nav-current">Edit</span>
   <a href="<?= h(admin_url('post/' . $editBot['id'])) ?>" class="btn btn-secondary btn-sm">Post</a>
   <a href="<?= h(admin_url('social/' . $editBot['id'])) ?>" class="btn btn-secondary btn-sm">Social</a>
@@ -94,7 +94,7 @@ require BASE_PATH . '/templates/admin/layout.php';
       <?php endif; ?>
     </div>
     <button type="submit" class="btn btn-primary">Save Changes</button>
-    <a href="<?= h(admin_url('bots')) ?>" class="btn btn-secondary">Cancel</a>
+    <a href="<?= h(admin_url()) ?>" class="btn btn-secondary">Cancel</a>
   </form>
 
   <hr class="hr-divider">
@@ -132,41 +132,10 @@ require BASE_PATH . '/templates/admin/layout.php';
       <small class="form-hint"><a href="#" onclick="(function(){var c='ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789!@#$%^&amp;*()-_=+[]{}|;:,&lt;&gt;?',a=new Uint8Array(62),s='';crypto.getRandomValues(a);a.forEach(function(b){s+=c[b%c.length]});document.getElementById('bot_password').value=s})();return false">Regenerate</a></small>
     </div>
     <button type="submit" class="btn btn-primary">Create Bot</button>
-    <a href="<?= h(admin_url('bots')) ?>" class="btn btn-secondary">Cancel</a>
+    <a href="<?= h(admin_url()) ?>" class="btn btn-secondary">Cancel</a>
   </form>
 </div>
 
-<?php else: ?>
-<!-- Bot List -->
-<div class="section-nav">
-  <a href="<?= h(admin_url('bots/create')) ?>" class="btn btn-primary">+ Create New Bot</a>
-</div>
-
-<?php if (empty($accounts)): ?>
-<div class="card">No bots yet.</div>
-<?php else: ?>
-<div class="card table-no-padding">
-  <table>
-    <thead><tr><th>Username</th><th>Display Name</th><th>Discoverable</th><th>Created</th><th>Actions</th></tr></thead>
-    <tbody>
-    <?php foreach ($accounts as $acc): ?>
-    <tr>
-      <td><a href="<?= h(profile_url($acc['username'])) ?>" target="_blank">@<?= h($acc['username']) ?></a><?= $acc['manually_approves_followers'] ? ' <span title="Follower approval is ON" class="approval-icon">⚠️</span>' : '' ?></td>
-      <td><?= h($acc['display_name'] ?: '—') ?></td>
-      <td><?= $acc['discoverable'] ? '<span class="badge badge-success">Yes</span>' : '<span class="badge badge-secondary">No</span>' ?></td>
-      <td class="text-sm text-muted"><?= h(date('M j, Y', strtotime($acc['created_at']))) ?></td>
-      <td>
-        <a href="<?= h(admin_url('bots/' . $acc['id'] . '/edit')) ?>" class="btn btn-secondary btn-sm">Edit</a>
-        <a href="<?= h(admin_url('post/' . $acc['id'])) ?>" class="btn btn-primary btn-sm">Post</a>
-        <a href="<?= h(admin_url('social/' . $acc['id'])) ?>" class="btn btn-secondary btn-sm">Social</a>
-        <a href="<?= h(admin_url('move/' . $acc['id'])) ?>" class="btn btn-secondary btn-sm">Move</a>
-      </td>
-    </tr>
-    <?php endforeach; ?>
-    </tbody>
-  </table>
-</div>
-<?php endif; ?>
 <?php endif; ?>
 
 <?php require BASE_PATH . '/templates/admin/layout_end.php'; ?>

@@ -9,15 +9,17 @@
 <body>
 <div class="layout">
   <aside class="sidebar">
-    <p class="sidebar-title">🤖 Bot Admin</p>
+    <div class="sidebar-top-row">
+      <p class="sidebar-title">🤖 Bot Admin</p>
+      <a href="<?= h(admin_url('logout')) ?>" class="sidebar-logout-mobile">Logout</a>
+    </div>
     <nav>
-      <a href="<?= h(admin_url()) ?>">Dashboard</a>
-      <a href="<?= h(admin_url('bots')) ?>">Bots</a>
+      <a href="<?= h(admin_url()) ?>">Bots</a>
       <a href="<?= h(admin_url('logs')) ?>">Logs</a>
       <a href="<?= h(admin_url('settings')) ?>">Settings</a>
       <hr class="hr-divider">
       <a href="<?= h(site_url()) ?>">← Public site</a>
-      <a href="<?= h(admin_url('logout')) ?>" class="logout-link">Logout</a>
+      <a href="<?= h(admin_url('logout')) ?>" class="sidebar-logout-desktop">Logout</a>
     </nav>
   </aside>
   <main class="main<?= isset($extraMainClass) ? ' ' . h($extraMainClass) : '' ?>">

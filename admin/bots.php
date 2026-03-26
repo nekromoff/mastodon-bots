@@ -5,6 +5,11 @@ declare(strict_types=1);
 $botId     = isset($adminSegs[1]) && is_numeric($adminSegs[1]) ? (int)$adminSegs[1] : null;
 $botAction = $adminSegs[2] ?? ($adminSegs[1] === 'create' ? 'create' : '');
 
+// List view is now the dashboard
+if ($botAction === '' && !$botId) {
+    redirect(admin_url());
+}
+
 // Create new bot
 if ($botAction === 'create' && is_post()) {
     csrf_verify();
@@ -41,7 +46,7 @@ if ($botAction === 'create' && is_post()) {
             if (!is_dir($path)) mkdir($path, 0755, true);
         }
 
-        redirect(admin_url('bots?created=1'));
+        redirect(admin_url('?created=1'));
     }
 }
 
@@ -120,7 +125,7 @@ if ($botAction === 'edit' && $botId && is_post()) {
 if ($botAction === 'delete' && $botId && is_post()) {
     csrf_verify();
     db_run("DELETE FROM accounts WHERE id = ?", [$botId]);
-    redirect(admin_url('bots?deleted=1'));
+    redirect(admin_url('?deleted=1'));
 }
 
 $accounts  = get_all_accounts();

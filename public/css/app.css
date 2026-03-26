@@ -11,7 +11,7 @@ body {
     line-height: 1.5
 }
 a {
-    color: #1877f2;
+    color: #1565c0;
     text-decoration: none
 }
 a:hover {
@@ -69,19 +69,19 @@ nav {
     text-align: center
 }
 .btn-primary {
-    background: #1877f2;
+    background: #1565c0;
     color: #fff
 }
 .btn-primary:hover {
-    background: #166fe5;
+    background: #0d47a1;
     text-decoration: none
 }
 .btn-danger {
-    background: #fa3e3e;
+    background: #c62828;
     color: #fff
 }
 .btn-danger:hover {
-    background: #e03535;
+    background: #b71c1c;
     text-decoration: none
 }
 .btn-secondary {
@@ -117,8 +117,8 @@ nav {
 /* === Tags === */
 .tag {
     display: inline-block;
-    background: #e7f3ff;
-    color: #1877f2;
+    background: #e8eaed;
+    color: #1565c0;
     padding: 0.125rem 0.5rem;
     border-radius: 0.75rem;
     font-size: .8rem;
@@ -129,7 +129,7 @@ nav {
 footer {
     text-align: center;
     padding: 2rem;
-    color: #65676b;
+    color: #505357;
     font-size: .85rem;
     margin-top: 2rem
 }
@@ -139,13 +139,13 @@ footer {
     margin-bottom: 0.5rem
 }
 .page-subtitle {
-    color: #65676b;
+    color: #505357;
     margin-bottom: 1.5rem
 }
 .empty-state {
     text-align: center;
     padding: 2.5rem;
-    color: #65676b
+    color: #505357
 }
 .bots-grid {
     display: grid;
@@ -175,7 +175,7 @@ footer {
     width: 3.5rem;
     height: 3.5rem;
     border-radius: 0.5rem;
-    background: #1877f2;
+    background: #1565c0;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -188,11 +188,11 @@ footer {
 }
 .bot-handle {
     font-size: .85rem;
-    color: #65676b
+    color: #505357
 }
 .bot-stats {
     font-size: .8rem;
-    color: #65676b;
+    color: #505357;
     margin-top: 0.25rem
 }
 .bot-bio {
@@ -231,7 +231,7 @@ footer {
 .posts-table .col-time {
     padding: 0.375rem 0 0.375rem 0.5rem;
     white-space: nowrap;
-    color: #65676b;
+    color: #505357;
     vertical-align: middle;
     font-size: .75rem
 }
@@ -283,7 +283,7 @@ a:has(.profile-avatar):hover .profile-avatar {
     width: 5rem;
     height: 5rem;
     border-radius: 0.5rem;
-    background: #1877f2;
+    background: #1565c0;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -294,13 +294,13 @@ a:has(.profile-avatar):hover .profile-avatar {
     font-size: 1.4rem
 }
 .profile-username {
-    color: #65676b
+    color: #505357
 }
 .profile-counts {
     margin-left: auto;
     text-align: right;
     font-size: .85rem;
-    color: #65676b
+    color: #505357
 }
 .profile-bio {
     margin-top: 1rem;
@@ -320,7 +320,7 @@ a:has(.profile-avatar):hover .profile-avatar {
 }
 .profile-fields .field-label {
     padding: 0.375rem 0.75rem;
-    color: #65676b;
+    color: #505357;
     white-space: nowrap;
     font-weight: 600;
     width: 30%
@@ -376,13 +376,13 @@ a:has(.profile-avatar):hover .profile-avatar {
     text-decoration: none
 }
 .post-handle {
-    color: #65676b;
+    color: #505357;
     font-size: .85rem
 }
 .post-time {
     margin-left: auto;
     font-size: .8rem;
-    color: #65676b
+    color: #505357
 }
 .post-time:hover {
     text-decoration: none
@@ -400,7 +400,7 @@ a:has(.profile-avatar):hover .profile-avatar {
 }
 .post-reply-indicator {
     font-size: .8rem;
-    color: #65676b;
+    color: #505357;
     margin-top: 0.25rem
 }
 .post-quote-box {
@@ -426,7 +426,7 @@ a:has(.profile-avatar):hover .profile-avatar {
 }
 .media-caption {
     font-size: .75rem;
-    color: #65676b;
+    color: #505357;
     padding: 0.25rem 0
 }
 .media-video {
@@ -439,7 +439,7 @@ a:has(.profile-avatar):hover .profile-avatar {
 }
 .post-footer {
     font-size: .8rem;
-    color: #65676b;
+    color: #505357;
     margin-top: 0.5rem
 }
 

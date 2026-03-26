@@ -158,7 +158,7 @@ function is_local(): bool {
 function site_url(string $path = ''): string {
     if (is_local()) {
         $base = rtrim(dirname($_SERVER['SCRIPT_NAME']), '/');
-        return $base . ($path !== '' ? '/' . ltrim($path, '/') : '');
+        return $base . ($path !== '' ? '/' . ltrim($path, '/') : ($base !== '' ? '' : '/'));
     }
     $domain = db_setting('domain', '') ?: '';
     if ($domain === '' || $domain === 'example.com') {

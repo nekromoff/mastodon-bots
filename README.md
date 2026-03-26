@@ -1,8 +1,8 @@
-# ActivityPub / Mastodon bots
+# ActivityPub bots (compatible Mastodon bots)
 
-A Mastodon (Activity Pub) bot instance developed in PHP to **quickly create and deploy multiple bots**. I use the bots to regularly post interesting content (historical photos).
+A Mastodon compatible (Activity Pub) bot instance developed in PHP to **quickly create and deploy multiple bots**. I use the bots to regularly post interesting content (historical photos) to Mastodon.
 
-Manual registration at large instances (like Mastodon.social) was slow: register -> verify -> create app -> add scopes... **This tool helps to deploy bots (new Mastodon accounts / identities) in couple of clicks.**
+Manual registration at large instances (like Mastodon.social) was slow: register -> verify -> create app -> add scopes... **This tool helps to deploy bots (new ActivityPub accounts / identities) in couple of clicks.**
 
 See it in action: https://bots.ambience.sk/
 
@@ -26,7 +26,7 @@ Multiuser (multibot) Fediverse instance. I recommend to host it on a domain or a
 
 ### Public website
 
-Public facing website with list of bots and their posts including their profiles and full Mastodon feeds.
+Public facing website with list of bots and their posts including their profiles and full Mastodon compatible feeds.
 
 Automatically generated based on the bots and their activity. Fully indexable by Google and other search engines. Verification via rel="me" included as well as bot creator META tag.
 
@@ -42,7 +42,7 @@ Automatically generated based on the bots and their activity. Fully indexable by
     - social features - follow or block
     - move - migration from (_alsoKnownAs_) and to (_movedTo_) an instance
 - **Logs** - log of all relevant events (incoming and outgoing) for all bots
-- **Settings** - Mastodon instance setup, log retention, media limits
+- **Settings** - instance setup, log retention, media limits
 
 ### Bot API
 
@@ -59,7 +59,7 @@ Very **simple API** to communicate with your bots.
 ## Setup your first bot
 
 1. Setup your instance by going to: example.com/admin/
-2. Set domain/subdomain to be used for your ActivityPub / Mastodon instance.
+2. Set domain/subdomain to be used for your ActivityPub (Mastodon compatible) instance.
 3. Create your admin password
 4. Login using your password.
 5. **Create New Bot**, set username (no @ character), display name, short bio, password for the bot (keep it for later = API access)
@@ -86,7 +86,7 @@ Very **simple API** to communicate with your bots.
 ### How do I post via API?
 > API requests authenticate using bot username and password. You can use a custom script to post any content to Mastodon (ActivityPub). The API is very simple. 
 
-> Example (creating a Mastodon post):
+> Example (creating a Mastodon / ActivityPub post):
 ```
 curl -u botname:botpassword \
      -X POST https://example.com/api/post \

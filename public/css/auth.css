@@ -5,9 +5,9 @@ body{font-family:system-ui,sans-serif;background:#f0f2f5;display:flex;align-item
 .card--wide{width:25rem}
 h1{font-size:1.2rem;margin-bottom:1.25rem}
 .setup-h1{font-size:1.3rem;margin-bottom:0.5rem}
-.setup-desc{color:#65676b;margin-bottom:1.5rem;font-size:.9rem}
+.setup-desc{color:#505357;margin-bottom:1.5rem;font-size:.9rem}
 .form-group{margin-bottom:0.875rem}
 label{display:block;font-size:.85rem;font-weight:500;margin-bottom:0.25rem}
 input{width:100%;padding:0.5rem 0.625rem;border:0.0625rem solid #ccd0d5;border-radius:0.375rem;font-size:.9rem}
-.btn{width:100%;padding:0.625rem;border:none;border-radius:0.375rem;background:#1877f2;color:#fff;font-size:1rem;cursor:pointer;margin-top:0.5rem}
+.btn{width:100%;padding:0.625rem;border:none;border-radius:0.375rem;background:#1565c0;color:#fff;font-size:1rem;cursor:pointer;margin-top:0.5rem}
 .alert{padding:0.625rem 0.875rem;border-radius:0.375rem;margin-bottom:1rem;font-size:.85rem;background:#f8d7da;color:#721c24;border:0.0625rem solid #f5c6cb}

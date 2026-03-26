@@ -117,7 +117,7 @@ require BASE_PATH . '/templates/admin/layout.php';
         <form method="POST" action="<?= h(admin_url('social/' . $account['id'] . '/unfollow')) ?>" class="inline-form">
           <input type="hidden" name="csrf_token" value="<?= h(csrf_token()) ?>">
           <input type="hidden" name="target_uri" value="<?= h($f['following_uri']) ?>">
-          <button type="submit" class="btn btn-secondary btn-sm" onclick="return confirm('Unfollow?')">Unfollow</button>
+          <button type="submit" class="btn btn-secondary btn-sm" data-confirm="Unfollow?">Unfollow</button>
         </form>
       </td>
     </tr>

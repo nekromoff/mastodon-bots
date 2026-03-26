@@ -72,7 +72,7 @@ require BASE_PATH . '/templates/admin/layout.php';
       <input type="url" name="new_account_uri" required placeholder="https://newserver.example/users/newbot"
              value="<?= h($_POST['new_account_uri'] ?? $account['moved_to'] ?? '') ?>">
     </div>
-    <button type="submit" class="btn btn-primary" onclick="return confirm('Send Move activity to all followers? This will redirect them to the new account.')">
+    <button type="submit" class="btn btn-primary" data-confirm="Send Move activity to all followers? This will redirect them to the new account.">
       Send Move Activity
     </button>
   </form>

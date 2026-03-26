@@ -100,7 +100,7 @@ require BASE_PATH . '/templates/admin/layout.php';
   <hr class="hr-divider">
   <h2 class="danger-zone-heading">Danger Zone</h2>
   <form method="POST" action="<?= h(admin_url('bots/' . $editBot['id'] . '/delete')) ?>"
-        onsubmit="return confirm('Delete this bot and all its posts? This cannot be undone.')">
+        data-confirm="Delete this bot and all its posts? This cannot be undone.">
     <input type="hidden" name="csrf_token" value="<?= h(csrf_token()) ?>">
     <button type="submit" class="btn btn-danger">Delete Bot</button>
   </form>
@@ -129,7 +129,7 @@ require BASE_PATH . '/templates/admin/layout.php';
       <label>Bot Password (for API auth)</label>
       <input type="text" name="bot_password" id="bot_password" required minlength="6" autocomplete="new-password"
              value="<?= h($_POST['bot_password'] ?? (function(){ $chars='ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789!@#$%^&*()-_=+[]{}|;:,.<>?'; $s=''; for($i=0;$i<62;$i++) $s.=$chars[random_int(0,strlen($chars)-1)]; return $s; })()) ?>">
-      <small class="form-hint"><a href="#" onclick="(function(){var c='ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789!@#$%^&amp;*()-_=+[]{}|;:,&lt;&gt;?',a=new Uint8Array(62),s='';crypto.getRandomValues(a);a.forEach(function(b){s+=c[b%c.length]});document.getElementById('bot_password').value=s})();return false">Regenerate</a></small>
+      <small class="form-hint"><a href="#" id="btn-regen-password" data-target="bot_password">Regenerate</a></small>
     </div>
     <button type="submit" class="btn btn-primary">Create Bot</button>
     <a href="<?= h(admin_url()) ?>" class="btn btn-secondary">Cancel</a>

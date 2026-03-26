@@ -108,7 +108,7 @@ require BASE_PATH . '/templates/admin/layout.php';
       <a href="<?= h(admin_url('post/' . $account['id'])) ?>#upload" class="btn btn-secondary">Upload Media</a>
       <?php if (!empty($pendingMedia)): ?>
       <form method="POST" action="<?= h(admin_url('post/' . $account['id'] . '/clear_draft')) ?>"
-            onsubmit="return confirm('Delete all uploaded draft media?')" style="display:inline">
+            data-confirm="Delete all uploaded draft media?" style="display:inline">
         <input type="hidden" name="csrf_token" value="<?= h(csrf_token()) ?>">
         <button type="submit" class="btn btn-danger">Clear Draft</button>
       </form>
@@ -172,7 +172,7 @@ require BASE_PATH . '/templates/admin/layout.php';
       <a href="<?= h(profile_url($account['username']) . '/' . rawurlencode(basename($p['activity_id']))) ?>" target="_blank" class="btn btn-secondary btn-sm">View</a>
       <a href="<?= h(admin_url('post/' . $account['id'] . '/' . $p['id'] . '/edit')) ?>" class="btn btn-secondary btn-sm">Edit</a>
       <form method="POST" action="<?= h(admin_url('post/' . $account['id'] . '/' . $p['id'] . '/delete')) ?>"
-            onsubmit="return confirm('Delete this post?')" class="inline-form">
+            data-confirm="Delete this post?" class="inline-form">
         <input type="hidden" name="csrf_token" value="<?= h(csrf_token()) ?>">
         <button type="submit" class="btn btn-danger btn-sm">Delete</button>
       </form>

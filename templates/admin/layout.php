@@ -5,6 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title><?= isset($pageTitle) ? h($pageTitle) . ' — ' : '' ?>Admin</title>
 <link rel="stylesheet" href="<?= h(site_url('public/css/admin.css')) ?>">
+<script src="<?= h(site_url('public/js/admin.js')) ?>" defer></script>
 </head>
 <body>
 <div class="layout">

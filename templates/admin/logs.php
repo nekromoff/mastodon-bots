@@ -10,47 +10,30 @@ require BASE_PATH . '/templates/admin/layout.php';
 
 <div class="logs-filter-bar">
   <form method="POST" action="<?= h(admin_url('logs' . ($botId ? '/' . $botId : '') . '/clear')) ?>"
-        onsubmit="return confirm('Clear all logs?')">
+        data-confirm="Clear all logs?">
     <input type="hidden" name="csrf_token" value="<?= h(csrf_token()) ?>">
     <button type="submit" class="btn btn-danger">Clear All Logs</button>
   </form>
 
-  <div class="flex-row">
-    <select class="btn btn-secondary logs-filter-select" id="logs-direction-filter"
-            onchange="logsRedirect()">
+  <div class="flex-row" id="logs-filters" data-base="<?= h(admin_url('logs')) ?>">
+    <select class="btn btn-secondary logs-filter-select" id="logs-direction-filter">
       <option value="" <?= empty($direction) ? 'selected' : '' ?>>All directions</option>
       <option value="in" <?= $direction === 'in' ? 'selected' : '' ?>>Incoming</option>
       <option value="out" <?= $direction === 'out' ? 'selected' : '' ?>>Outgoing</option>
     </select>
-    <select class="btn btn-secondary logs-filter-select" id="logs-bot-filter"
-            onchange="logsRedirect()">
+    <select class="btn btn-secondary logs-filter-select" id="logs-bot-filter">
       <option value="">All bots</option>
       <?php foreach ($accounts as $acc): ?>
       <option value="<?= $acc['id'] ?>" <?= $botId == $acc['id'] ? 'selected' : '' ?>>@<?= h($acc['username']) ?></option>
       <?php endforeach; ?>
     </select>
-    <select class="btn btn-secondary logs-filter-select" id="logs-event-filter"
-            onchange="logsRedirect()">
+    <select class="btn btn-secondary logs-filter-select" id="logs-event-filter">
       <option value="" <?= empty($eventType) ? 'selected' : '' ?>>All event types</option>
       <?php foreach (['Follow','Accept','Reject','Undo','Create','Update','Delete','Announce','Like','Block','Move'] as $et): ?>
       <option value="<?= $et ?>" <?= $eventType === $et ? 'selected' : '' ?>><?= $et ?></option>
       <?php endforeach; ?>
     </select>
   </div>
-  <script>
-  function logsRedirect() {
-    var bot   = document.getElementById('logs-bot-filter').value;
-    var dir   = document.getElementById('logs-direction-filter').value;
-    var event = document.getElementById('logs-event-filter').value;
-    var base  = <?= json_encode(admin_url('logs')) ?>;
-    var url   = base + (bot ? '/' + bot : '');
-    var params = [];
-    if (dir)   params.push('direction=' + encodeURIComponent(dir));
-    if (event) params.push('event_type=' + encodeURIComponent(event));
-    if (params.length) url += '?' + params.join('&');
-    window.location.href = url;
-  }
-  </script>
 </div>
 
 <?php if (empty($logs)): ?>
@@ -128,12 +111,10 @@ require BASE_PATH . '/templates/admin/layout.php';
       <td class="log-time-cell" data-label="Time"><?= h(date('M j H:i', strtotime($log['created_at']))) ?></td>
       <td data-label="Details">
         <?php if (!empty($log['error'])): ?>
-        <button type="button" class="btn btn-secondary btn-sm btn-error"
-                onclick="this.nextElementSibling.style.display=this.nextElementSibling.style.display?'':'block';this.remove()">⚠ error</button>
+        <button type="button" class="btn btn-secondary btn-sm btn-error" data-toggle-next>⚠ error</button>
         <pre class="error-detail-box"><?= h($log['error']) ?></pre>
         <?php else: ?>
-        <button type="button" class="btn btn-secondary btn-sm"
-                onclick="this.nextElementSibling.style.display=this.nextElementSibling.style.display?'':'block';this.remove()">JSON</button>
+        <button type="button" class="btn btn-secondary btn-sm" data-toggle-next>JSON</button>
         <pre class="json-detail-box"><?= h(json_encode(json_decode($log['activity_json']), JSON_PRETTY_PRINT | JSON_UNESCAPED_SLASHES | JSON_UNESCAPED_UNICODE)) ?></pre>
         <?php endif; ?>
       </td>

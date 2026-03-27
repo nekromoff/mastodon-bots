@@ -6,7 +6,7 @@ Manual registration at large instances (like Mastodon.social) was slow: register
 
 See it in action: https://bots.ambience.sk/
 
-## Advantages
+## Technology
 
 - **Pure PHP**, no external dependencies.
 - **Apache server** needed because of **.htaccess rewrite rules**. But these could be easily converted to **NGINX**.

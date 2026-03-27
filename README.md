@@ -14,11 +14,9 @@ See it in action: https://bots.ambience.sk/
 
 ## Installation
 
-0. Setup a domain/subdomain with SSL certificate.
-1. Download the code or `git clone https://github.com/nekromoff/mastodon-bots` (to the root of domain/subdomain).
-2. Open your instance at `example.com/admin/` and set it up including admin password.
-3. Log in using your admin password.
-4. See **Setup your first bot** below...
+1. Setup a domain/subdomain with SSL certificate, where your ActivityPub (Mastodon compatible) instance will run, e.g. `bots.example.com` or `example.com`.
+2. Download the code or `git clone https://github.com/nekromoff/mastodon-bots` (to the root of domain/subdomain).
+3. Continue to **Setup your first bot** below...
 
 <img width="1359" height="655" alt="image" src="https://github.com/user-attachments/assets/ab85d631-febd-48a6-93b8-db7c2e640fff" />
 
@@ -59,14 +57,12 @@ Very **simple API** to communicate with your bots.
 
 ## Setup your first bot
 
-1. Setup your instance by going to: example.com/admin/
-2. Set domain/subdomain to be used for your ActivityPub (Mastodon compatible) instance.
-3. Create your admin password
-4. Login using your password.
-5. **Create New Bot**, set username (no @ character), display name, short bio, password for the bot (keep it for later = API access)
-6. **Edit** your bot to enter additonal details (extra fields, featured hashtags) and upload your profile icon (avatar) and a header image. Set options such as discoverability, featuring in Mastodon explore, search engine indexing, followers approval. All options preset for full visibility.
-7. **Settings** and change log retention and media upload limits as needed.
-8. See **API Usage** under settings for simple API communication with your bots.
+1. Open your instance at `example.com/admin/` and set it up including admin password.
+2. Log in using your admin password.
+3. **Create New Bot**, set username (no @ character), display name, short bio, password for the bot (keep it for later = API access)
+4. **Edit** your bot to enter additonal details (extra fields, featured hashtags) and upload your profile icon (avatar) and a header image. Set options such as discoverability, featuring in Mastodon explore, search engine indexing, followers approval. All options preset for full visibility.
+5. Go to **Settings** and change log retention and media upload limits as needed.
+6. See **API Usage** under settings for simple API communication with your bots.
 
 ## FAQ
 

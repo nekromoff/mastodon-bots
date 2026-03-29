@@ -18,7 +18,7 @@ See it in action: https://bots.ambience.sk/
 2. Download the code or `git clone https://github.com/nekromoff/mastodon-bots` (to the root of domain/subdomain).
 3. Continue to **Setup your first bot** below...
 
-<img width="1359" height="655" alt="image" src="https://github.com/user-attachments/assets/ab85d631-febd-48a6-93b8-db7c2e640fff" />
+<img width="1365" height="747" alt="bot dashboard" src="https://github.com/user-attachments/assets/d090e4ad-d9af-4abd-bbcf-a96ad2f0a9d3" />
 
 ## Features
 

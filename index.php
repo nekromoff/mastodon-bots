@@ -86,6 +86,8 @@ if (!isset($_GET['_route']) && php_sapi_name() === 'cli-server') {
         $_GET['_route'] = 'api'; $_GET['_api_path'] = $m[1];
     } elseif ($uri === '/media/upload') {
         $_GET['_route'] = 'media_upload';
+    } elseif ($uri === '/sitemap.xml') {
+        $_GET['_route'] = 'sitemap';
     } elseif ($uri === '/') {
         $_GET['_route'] = 'home';
     }
@@ -112,6 +114,7 @@ $routes = [
     'api'                => 'api.php',
     'admin'              => 'admin/index.php',
     'home'               => 'public/home.php',
+    'sitemap'            => 'public/sitemap.php',
 ];
 
 $file = $routes[$route] ?? null;

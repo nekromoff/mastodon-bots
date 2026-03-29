@@ -15,7 +15,7 @@ DirectoryIndex index.php
     RewriteRule ^uploads/ - [L]
 
     # Static assets
-    RewriteRule ^(favicon\.ico|robots\.txt|sitemap\.xml)$ - [L]
+    RewriteRule ^(favicon\.ico|robots\.txt)$ - [L]
 
     # /.well-known/webfinger
     RewriteRule ^\.well-known/webfinger$ index.php?_route=webfinger [L,QSA]
@@ -65,7 +65,10 @@ DirectoryIndex index.php
     # /tags/{tag}
     RewriteRule ^tags/([a-zA-Z0-9_-]+)$ index.php?_route=tag&tag=$1 [L,QSA]
 
-    # /api/*
+    # /sitemap.xml
+    RewriteRule ^sitemap\.xml$ index.php?_route=sitemap [L,QSA]
+
+     # /api/*
     RewriteRule ^api/(.*)$ index.php?_route=api&_api_path=$1 [L,QSA]
 
     # /media/upload

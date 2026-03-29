@@ -155,7 +155,7 @@ require BASE_PATH . '/templates/admin/layout.php';
       <div class="post-thumbs">
         <?php foreach ($p['attachments'] as $att): ?>
           <?php if (str_starts_with($att['mime_type'], 'image/')): ?>
-          <img src="<?= h($att['file_url']) ?>" alt="<?= h($att['alt_text']) ?>" class="post-thumb-img">
+          <a href="<?= h($att['file_url']) ?>"><img src="<?= h($att['file_url']) ?>" alt="<?= h($att['alt_text']) ?>" class="post-thumb-img"></a>
           <?php else: ?>
           <span class="post-thumb-label"><?= h($att['mime_type']) ?></span>
           <?php endif; ?>

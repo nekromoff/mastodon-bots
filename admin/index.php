@@ -8,6 +8,7 @@ require_once LIB_PATH . '/autolink.php';
 require_once LIB_PATH . '/media_helper.php';
 require_once LIB_PATH . '/deliver.php';
 require_once LIB_PATH . '/http_sig.php';
+require_once LIB_PATH . '/relay.php';
 require_once BASE_PATH . '/admin/auth.php';
 
 $adminPath = trim($_GET['_admin_path'] ?? '', '/');

@@ -5,6 +5,7 @@ require_once __DIR__ . '/db.php';
 require_once __DIR__ . '/helpers.php';
 require_once __DIR__ . '/http_sig.php';
 require_once __DIR__ . '/logger.php';
+require_once __DIR__ . '/activity.php';
 
 /**
  * Deliver an activity to all accepted followers of a local account.
@@ -28,6 +29,16 @@ function deliver_to_followers(array $activity, array $account, array $extraInbox
     foreach ($extraInboxes as $inbox) {
         if (!empty($inbox))
             $inboxes[$inbox] = true;
+    }
+
+    // Include active relay inboxes for public activities
+    $to = (array)($activity['to'] ?? []);
+    $cc = (array)($activity['cc'] ?? []);
+    if (in_array(AP_PUBLIC, array_merge($to, $cc), true)) {
+        require_once __DIR__ . '/relay.php';
+        foreach (get_relay_inboxes() as $relayInbox) {
+            $inboxes[$relayInbox] = true;
+        }
     }
 
     $body = json_encode($activity, JSON_UNESCAPED_SLASHES | JSON_UNESCAPED_UNICODE);

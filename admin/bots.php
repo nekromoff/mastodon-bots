@@ -46,6 +46,12 @@ if ($botAction === 'create' && is_post()) {
             if (!is_dir($path)) mkdir($path, 0755, true);
         }
 
+        // Subscribe new bot to all existing relays
+        $newAccount = get_account_by_username($username);
+        if ($newAccount) {
+            subscribe_new_account_to_relays($newAccount);
+        }
+
         redirect(admin_url('?created=1'));
     }
 }
@@ -126,6 +132,8 @@ if ($botAction === 'delete' && $botId && is_post()) {
     csrf_verify();
     $delBot = get_account_by_id($botId);
     if ($delBot) {
+        // Unsubscribe from all relays before deleting
+        unsubscribe_account_from_all_relays($delBot);
         db_run("DELETE FROM accounts WHERE id = ?", [$botId]);
         foreach (['avatars', 'headers'] as $_dir) {
             $_path = BASE_PATH . '/uploads/' . $_dir . '/' . $delBot['username'];

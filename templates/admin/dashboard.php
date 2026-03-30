@@ -69,14 +69,14 @@ $failedLog = (int) (db_get("SELECT COUNT(*) as c FROM activities_log WHERE statu
         <div class="bot-meta">
           <?php if ($acc['display_name']): ?><span class="bot-meta-item"><?= h($acc['display_name']) ?></span><?php endif; ?>
           <span class="bot-meta-item"><?= $pc ?> posts</span>
-          <span class="bot-meta-item"><?= $total ?> followers <?php echo($diff > 0) ? '(<span class="stat-value--success"><strong>+' . $diff . '</strong><span>)' : (($diff < 0) ? '(<span class="stat-value--danger"><strong>-' . $diff . '</strong></span>)' : ''); ?></span>
+          <span class="bot-meta-item"><?= $total ?> followers <?php echo($diff > 0) ? '(<span class="stat-value--success" title="Past 3 days"><strong>+' . $diff . '</strong><span>)' : (($diff < 0) ? '(<span class="stat-value--danger" title="Past 3 days"><strong>-' . $diff . '</strong></span>)' : ''); ?></span>
           <span class="bot-meta-item"><?= $acc['discoverable'] ? '<span class="badge badge-success">Discoverable</span>' : '<span class="badge badge-secondary">Not discoverable</span>' ?></span>
           <span class="bot-meta-item text-muted"><?= h(date('M j, Y', strtotime($acc['created_at']))) ?></span>
         </div>
       </td>
       <td class="col-detail"><?= h($acc['display_name'] ?: '—') ?></td>
       <td class="col-detail"><?= $pc ?></td>
-      <td class="col-detail"><?= $total ?> <?php echo($diff > 0) ? '(<span class="stat-value--success"><strong>+' . $diff . '</strong><span>)' : (($diff < 0) ? '(<span class="stat-value--danger"><strong>-' . $diff . '</strong></span>)' : ''); ?></td>
+      <td class="col-detail"><?= $total ?> <?php echo($diff > 0) ? '(<span class="stat-value--success" title="Past 3 days"><strong>+' . $diff . '</strong><span>)' : (($diff < 0) ? '(<span class="stat-value--danger" title="Past 3 days"><strong>-' . $diff . '</strong></span>)' : ''); ?></td>
       <td class="col-detail"><?= $acc['discoverable'] ? '<span class="badge badge-success">Yes</span>' : '<span class="badge badge-secondary">No</span>' ?></td>
       <td class="col-detail text-sm text-muted"><?= h(date('M j, Y', strtotime($acc['created_at']))) ?></td>
       <td>

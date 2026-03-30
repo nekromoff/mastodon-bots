@@ -39,6 +39,28 @@ require BASE_PATH . '/templates/admin/layout.php';
       <small class="form-hint">Receives a POST request (JSON) when someone replies to a bot post.</small>
     </div>
 
+    <div class="form-group">
+      <label>Relays (one inbox URL per line)</label>
+      <textarea name="relays" rows="4" placeholder="https://relay.toot.io/inbox"><?= h(implode("\n", $relayUrls)) ?></textarea>
+      <small class="form-hint">ActivityPub relays for wider federation. Public posts will be sent to accepted relays.</small>
+<?php if (!empty($relayStatus)): ?>
+      <div class="relay-status" style="margin-top:0.5rem;">
+<?php foreach ($relayStatus as $url => $st): ?>
+        <div style="font-size:0.85em;margin-bottom:0.25rem;">
+          <code><?= h($url) ?></code> —
+<?php if ($st['accepted'] === $st['total']): ?>
+          <span class="badge badge-success"><?= $st['accepted'] ?>/<?= $totalBots ?> bots accepted</span>
+<?php elseif ($st['rejected'] > 0): ?>
+          <span class="badge badge-danger"><?= $st['rejected'] ?> rejected</span>
+<?php else: ?>
+          <span class="badge badge-secondary"><?= $st['pending'] ?> pending</span>
+<?php endif; ?>
+        </div>
+<?php endforeach; ?>
+      </div>
+<?php endif; ?>
+    </div>
+
     <hr class="hr-divider">
     <h2>Change Admin Password</h2>
     <div class="form-group">

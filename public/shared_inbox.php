@@ -117,6 +117,10 @@ function shared_handle_accept(array $account, array $actor, array $activity, str
             "UPDATE following SET accepted = 1 WHERE account_id = ? AND follow_activity_id = ?",
             [$account['id'], $followId]
         );
+        db_run(
+            "UPDATE relays SET state = 'accepted' WHERE follow_activity_id = ? AND account_id = ?",
+            [$followId, $account['id']]
+        );
     } else {
         db_run(
             "UPDATE following SET accepted = 1 WHERE account_id = ? AND following_uri = ?",
@@ -134,6 +138,10 @@ function shared_handle_reject(array $account, array $actor, array $activity, str
         db_run(
             "DELETE FROM following WHERE account_id = ? AND follow_activity_id = ?",
             [$account['id'], $followId]
+        );
+        db_run(
+            "UPDATE relays SET state = 'rejected' WHERE follow_activity_id = ? AND account_id = ?",
+            [$followId, $account['id']]
         );
     } else {
         db_run(

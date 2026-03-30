@@ -102,6 +102,11 @@ function handle_accept_activity(array $account, array $actor, array $activity, s
             "UPDATE following SET accepted = 1 WHERE account_id = ? AND follow_activity_id = ?",
             [$account['id'], $followId]
         );
+        // Also check if this Accept is for a relay subscription
+        db_run(
+            "UPDATE relays SET state = 'accepted' WHERE follow_activity_id = ? AND account_id = ?",
+            [$followId, $account['id']]
+        );
     } else {
         db_run(
             "UPDATE following SET accepted = 1 WHERE account_id = ? AND following_uri = ?",
@@ -119,6 +124,11 @@ function handle_reject_activity(array $account, array $actor, array $activity, s
         db_run(
             "DELETE FROM following WHERE account_id = ? AND follow_activity_id = ?",
             [$account['id'], $followId]
+        );
+        // Also check if this Reject is for a relay subscription
+        db_run(
+            "UPDATE relays SET state = 'rejected' WHERE follow_activity_id = ? AND account_id = ?",
+            [$followId, $account['id']]
         );
     } else {
         db_run(
